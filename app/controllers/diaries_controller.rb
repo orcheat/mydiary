@@ -1,9 +1,10 @@
 class DiariesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_diary, only: %i[ show edit update destroy ]
 
   # GET /diaries or /diaries.json
   def index
-    @diaries = Diary.all
+    redirect_to root_path
   end
 
   # GET /diaries/1 or /diaries/1.json
@@ -12,7 +13,7 @@ class DiariesController < ApplicationController
 
   # GET /diaries/new
   def new
-    @diary = Diary.new
+    @diary = current_user.diaries.build
   end
 
   # GET /diaries/1/edit
@@ -21,7 +22,7 @@ class DiariesController < ApplicationController
 
   # POST /diaries or /diaries.json
   def create
-    @diary = Diary.new(diary_params)
+    @diary = current_user.diaries.build(diary_params)
 
     respond_to do |format|
       if @diary.save
@@ -52,7 +53,7 @@ class DiariesController < ApplicationController
     @diary.destroy!
 
     respond_to do |format|
-      format.html { redirect_to diaries_path, notice: "Diary was successfully destroyed.", status: :see_other }
+      format.html { redirect_to root_path, notice: "Diary was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
   end
@@ -60,11 +61,12 @@ class DiariesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_diary
-      @diary = Diary.find(params.expect(:id))
+      @diary = current_user.diaries.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def diary_params
-      params.expect(diary: [ :title, :description, :color, :user_id ])
+      params.expect(diary: [ :title, :description, :color ])
     end
 end
+

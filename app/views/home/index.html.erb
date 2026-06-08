@@ -1,1 +1,43 @@
-<%= render 'layouts/landing' %>
+
+<% if user_signed_in? %>
+<div class="w-full max-w-4xl mx-auto px-4 py-10">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-700 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center mb-10">
+    <div>
+      <h1 class="font-bold text-4xl text-gray-900">Your Diaries</h1>
+      <p class="text-gray-500 mt-2">Capture your thoughts and memories.</p>
+    </div>
+    <%= link_to new_diary_path, class: "rounded-xl px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-sm transition-all duration-200 flex items-center gap-2" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+      </svg>
+      New Diary
+    <% end %>
+  </div>
+
+  <% if @diaries.any? %>
+    <div id="diaries" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% @diaries.each do |diary| %>
+        <%= render "diaries/diary_card", diary: diary %>
+      <% end %>
+    </div>
+
+  <% else %>
+    <div class="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+      <div class="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      </div>
+      <h3 class="text-lg font-medium text-gray-900">No diaries yet</h3>
+      <p class="text-gray-500 mt-1">Start your journaling journey today.</p>
+      <%= link_to "Create your first entry", new_diary_path, class: "mt-6 inline-block text-indigo-600 font-semibold hover:text-indigo-700" %>
+    </div>
+  <% end %>
+</div>
+<% else %>
+ <%= render 'layouts/landing' %>
+<% end %>

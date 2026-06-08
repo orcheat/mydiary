@@ -1,10 +1,14 @@
-<% content_for :title, "Editing diary" %>
+<div class="max-w-3xl mx-auto px-4 py-12">
+  <div class="mb-10 text-center">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-2">Edit Memory</h1>
+    <p class="text-gray-500 italic">Refine your thoughts and memories.</p>
+  </div>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing diary</h1>
+  <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
+    <%= render "form", diary: @diary %>
+  </div>
 
-  <%= render "form", diary: @diary %>
-
-  <%= link_to "Show this diary", @diary, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to diaries", diaries_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <div class="mt-8 text-center">
+    <%= link_to "Show this diary", @diary, class: "text-sm font-semibold text-indigo-600 hover:text-indigo-700" %>
+  </div>
 </div>
