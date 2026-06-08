@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Mydiary" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Mydiary">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= favicon_link_tag 'notes_pencil.ico' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render 'layouts/header' %>
+    
+    <% if notice.present? %>
+      <div class="mx-auto max-w-md px-4 pt-4">
+        <p class="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-800"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="mx-auto max-w-md px-4 pt-4">
+        <p class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-800"><%= alert %></p>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>

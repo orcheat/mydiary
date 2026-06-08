@@ -1,0 +1,29 @@
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+  <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-8">
+    
+    <div class="max-w-md text-center lg:text-left mx-auto lg:mx-0">
+      <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl leading-tight">
+        Your Personal <span class="text-indigo-600">Journal</span>
+      </h1>
+      
+      <p class="mt-4 text-base text-gray-500 sm:text-lg">
+        Document your daily journey, capture fleeting thoughts, and secure your memories in a beautiful space designed just for you.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+       
+        <%= link_to 'Get Started', new_user_registration_path, class: 'inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-gray-800 transition-all duration-200' %>
+        <button class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-6 py-3 text-base font-semibold text-gray-600 hover:bg-gray-50 transition-all duration-200">
+          Explore Features
+        </button>
+      </div>
+    </div>
+
+    <div class="flex justify-center lg:justify-end">
+      <div class="w-full max-w-md lg:max-w-xl transition-transform duration-300 hover:translate-y-1">
+        <%= image_tag 'notesimg.svg', class: 'w-full h-auto object-contain drop-shadow-md' %>
+      </div>
+    </div>
+
+  </div>
+</div>

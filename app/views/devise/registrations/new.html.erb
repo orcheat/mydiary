@@ -1,0 +1,30 @@
+<% input_class = "block w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200" %>
+<% label_class = "block text-sm font-medium text-gray-700 mb-1.5" %>
+
+<%= render layout: "devise/shared/auth_layout", locals: { title_prefix: "Start your ", title_highlight: "journey", subtitle: "Create an account to begin documenting your life" } do %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-5" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div>
+      <%= f.label :email, class: label_class %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com", class: input_class %>
+    </div>
+
+    <div>
+      <%= f.label :password, class: label_class %>
+      <% if @minimum_password_length %>
+        <p class="text-xs text-gray-400 mb-1.5"><%= @minimum_password_length %> characters minimum</p>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Create a password", class: input_class %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation, class: label_class %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm your password", class: input_class %>
+    </div>
+
+    <div class="pt-1">
+      <%= f.submit "Sign up", class: "w-full cursor-pointer rounded-xl bg-gray-900 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all duration-200" %>
+    </div>
+  <% end %>
+<% end %>

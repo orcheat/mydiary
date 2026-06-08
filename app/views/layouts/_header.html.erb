@@ -1,0 +1,22 @@
+<nav class="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      
+      <a href="/" class="flex items-center gap-3 group">
+        <img class="h-8 w-auto transition-transform duration-200 group-hover:scale-105" src="<%= asset_path('logo.svg') %>" alt="My Diary Logo">
+        <span class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+          My <span class="text-indigo-600">Diary</span>
+        </span>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <% if user_signed_in? %>
+          <%= link_to 'Log Out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-200 transition-all duration-200' %>
+        <% else %>
+          <%= link_to 'Log In', new_user_session_path, class: 'rounded-xl bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all duration-200' %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</nav>
